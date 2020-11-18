@@ -1,10 +1,25 @@
 # ALPHA
 
-Abdullah03366 	Abdullah Sanli	1766678
-Cemil030 		Cemil Besli	1779786
-ChaimDG 	Chaim de Gelder	1790519
-Youcol 		Youri Collignon	1735684
 
+
+Usernames, namen en studentnummers.
+-------------
+Abdullah03366
+Abdullah Sanli
+1766678
+-------------
+Cemil1030
+Cemil Besli
+1779786
+-------------
+ChaimDG
+Chaim de Gelder
+1790519
+-------------
+Youcol
+Youri Collignon
+1735684
+-------------
 
 Achtergrond Steam
 
@@ -28,7 +43,7 @@ Voorbeeldvragen die Steam beantwoord wil zien voor haar klanten:
 
 Instructies code uitvoeren
 
-1. Download 'AI-sprint 1.py' vanuit de GitHub Repo.
-2. Open dit met Python/Pycharm
-3a. Druk op 'SHIFT+F10' om de code te runnen
+1.  Download 'AI-sprint 1.py' vanuit de GitHub Repo
+2.  Open dit met Python/Pycharm
+3a. Druk op "SHIFT+F10" om de code te runnen
 3b. Of klik met uw rechtermuisknop in de code en selecteer 'Run'
