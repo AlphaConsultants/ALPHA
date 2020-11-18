@@ -3,16 +3,19 @@ import requests
 
 file = open("github_voorbeeld", "r+")
 
-github_example = "https://raw.githubusercontent.com/tijmenjoppe/AnalyticalSkills-student/master/project/data/steam.json"
+github_example = "https://raw.githubusercontent.com/AlphaConsultants/ALPHA/main/AI/textdocumenttest.json"
 json_data = requests.get(github_example).json()
 file.write(str(json_data))
 
+
 def toon_eerste_spel():
     eerste_spel_frame.pack()
-    data = json_data[0]
-    eerste_spel = data["name"]
-    spel_label = Label(eerste_spel_frame, text=eerste_spel, bg="red", fg="white", font=("Calibri", 27, "bold"))
-    spel_label.pack(pady=80)
+    for games in json_data:
+        if games["price"] < 200:
+            eerste_spel = games["name"], "\n", games["release_date"], "\n", games["price"]
+            spel_label = Label(eerste_spel_frame, text=eerste_spel, bg="red", fg="white", font=("Calibri", 27, "bold"))
+            spel_label.pack(pady=80)
+
 
 root = Tk()
 root.title("Dashboard Steam")
