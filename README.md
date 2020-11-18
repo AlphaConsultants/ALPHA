@@ -30,5 +30,5 @@ Instructies code uitvoeren
 
 1. Download 'AI-sprint 1.py' vanuit de GitHub Repo.
 2. Open dit met Python/Pycharm
-3. Druk op 'SHIFT+F10' om de code te runnen
-4. Of klik met uw rechtermuisknop in de code en selecteer 'Run'
+3a. Druk op 'SHIFT+F10' om de code te runnen
+3b. Of klik met uw rechtermuisknop in de code en selecteer 'Run'
