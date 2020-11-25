@@ -1,12 +1,10 @@
 from tkinter import *
 import requests
 
-file = open("github_voorbeeld", "r+")
-
 github_example = "https://raw.githubusercontent.com/AlphaConsultants/ALPHA/main/AI/textdocumenttest.json"
 json_data = requests.get(github_example).json()
-file.write(str(json_data))
 
+print(json_data)
 
 def toon_eerste_spel():
     eerste_spel_frame.pack(side=LEFT)
