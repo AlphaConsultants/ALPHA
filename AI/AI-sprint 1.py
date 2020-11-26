@@ -17,6 +17,7 @@ print(games_list)
 
 
 def toon_spellen():
+    data_box.delete(0, "end")
     data_box.pack()
     positie = 0
     for games in games_list:
@@ -25,14 +26,11 @@ def toon_spellen():
             data_box.insert(positie, game)
 
 
-# def toon_eerste_spel():
-#     eerste_spel_frame.pack(side=LEFT)
-#     for games in json_data:
-#         if games["appid"] < 20:
-#             eerste_spel = games["name"], "\n", games["release_date"], "\n", games["price"]
-#             spel_label = Label(eerste_spel_frame, text=eerste_spel, bg="red", fg="white", font=("Calibri", 18, "bold"))
-#             spel_label.pack(padx=200, pady=20)
-
+def toon_eerste_spel():
+    data_box.delete(0, "end")
+    data_box.pack()
+    eersteSpel = games_list[0][1]
+    data_box.insert(1, eersteSpel)
 
 root = Tk()
 root.title("Dashboard Steam")
@@ -54,12 +52,14 @@ titel.pack(pady=90)
 
 DataFrame.place(x=100, y=400)
 SorteerButtonFrame.pack(side=RIGHT)
-LinkerFrame.pack(side=RIGHT, pady=55, padx=30)
+LinkerFrame.pack(side=LEFT, pady=55, padx=30)
 RechterFrame.pack(side=RIGHT, pady=55, padx=30)
 
 
 '''Sorteerknoppen met titel'''
 SorteerTitel = Label(SorteerButtonFrame, text="Sorteren op:", bg="#17202e", fg="white", font=("Calibri", 24, "bold"))
+ToonAlleGames = Button(RechterFrame, text="Toon Games", width=24, font=("Calibri", 14, "bold"), command=toon_spellen)
+Eerste_Spel = Button(LinkerFrame, text="Eerste Spel", width=24, font=("Calibri", 14, "bold"), command=toon_eerste_spel)
 Name_AZ = Button(LinkerFrame, text="Naam (A-Z)", width=24, font=("Calibri", 14, "bold"))
 Name_ZA = Button(RechterFrame, text="Naam (Z-A)", width=24, font=("Calibri", 14, "bold"))
 Genre_AZ = Button(LinkerFrame, text="Genre (A-Z)", width=24, font=("Calibri", 14, "bold"))
@@ -76,6 +76,8 @@ RequiredAge_LH = Button(LinkerFrame, text="Required Age (laag-hoog)", width=24, 
 RequiredAge_HL = Button(RechterFrame, text="Required Age (hoog-laag)", width=24, font=("Calibri", 14, "bold"))
 
 SorteerTitel.place(x=30, y=10)
+Eerste_Spel.pack(pady=10)
+ToonAlleGames.pack(pady=10)
 Name_AZ.pack(pady=10)
 Name_ZA.pack(pady=10)
 Genre_AZ.pack(pady=10)
