@@ -4,19 +4,21 @@ import requests
 github_example = "https://raw.githubusercontent.com/AlphaConsultants/ALPHA/main/AI/textdocumenttest.json"
 json_data = requests.get(github_example).json()
 
-
 games_list = []
 
-for data in json_data:
-    rating_in_percentage = ((data["positive_ratings"] - data["negative_ratings"]) / data["positive_ratings"]) * 100
-    rating_in_percentage_afgerond = str(round(rating_in_percentage, 1))
-    data_per_game = data["appid"], data["name"], data["genres"], data["release_date"], data["price"], data["owners"], rating_in_percentage_afgerond, data["required_age"], "\n"
-    games_list.append(tuple(data_per_game))
 
-print(games_list)
+def data_opvragen():
+    games_list.clear()
+    for data in json_data:
+        rating_in_percentage = ((data["positive_ratings"] - data["negative_ratings"]) / data["positive_ratings"]) * 100
+        rating_in_percentage_afgerond = str(round(rating_in_percentage, 1))
+        data_per_game = data["appid"], data["name"], data["genres"], data["release_date"], data["price"], data[
+            "owners"], rating_in_percentage_afgerond, data["required_age"], "\n"
+        games_list.append(tuple(data_per_game))
 
 
 def toon_spellen():
+    data_opvragen()
     data_box.delete(0, "end")
     data_box.pack()
     positie = 0
@@ -27,10 +29,180 @@ def toon_spellen():
 
 
 def toon_eerste_spel():
+    data_opvragen()
     data_box.delete(0, "end")
     data_box.pack()
     eersteSpel = games_list[0][1]
     data_box.insert(1, eersteSpel)
+
+
+def toon_naam_az():
+    data_opvragen()
+    data_box.delete(0, "end")
+    data_box.pack()
+    positie = 0
+    games_list.sort(key=lambda tup: tup[1])
+    for games in games_list:
+        for game in games:
+            positie += 1
+            data_box.insert(positie, game)
+
+
+def toon_naam_za():
+    data_opvragen()
+    data_box.delete(0, "end")
+    data_box.pack()
+    positie = 0
+    games_list.sort(key=lambda tup: tup[1], reverse=True)
+    for games in games_list:
+        for game in games:
+            positie += 1
+            data_box.insert(positie, game)
+
+
+def toon_genre_az():
+    data_opvragen()
+    data_box.delete(0, "end")
+    data_box.pack()
+    positie = 0
+    games_list.sort(key=lambda tup: tup[2])
+    for games in games_list:
+        for game in games:
+            positie += 1
+            data_box.insert(positie, game)
+
+
+def toon_genre_za():
+    data_opvragen()
+    data_box.delete(0, "end")
+    data_box.pack()
+    positie = 0
+    games_list.sort(key=lambda tup: tup[2], reverse=True)
+    for games in games_list:
+        for game in games:
+            positie += 1
+            data_box.insert(positie, game)
+
+
+def toon_release_date_on():
+    data_opvragen()
+    data_box.delete(0, "end")
+    data_box.pack()
+    positie = 0
+    games_list.sort(key=lambda tup: tup[3])
+    for games in games_list:
+        for game in games:
+            positie += 1
+            data_box.insert(positie, game)
+
+
+def toon_release_date_no():
+    data_opvragen()
+    data_box.delete(0, "end")
+    data_box.pack()
+    positie = 0
+    games_list.sort(key=lambda tup: tup[3], reverse=True)
+    for games in games_list:
+        for game in games:
+            positie += 1
+            data_box.insert(positie, game)
+
+
+def toon_prijs_lh():
+    data_opvragen()
+    data_box.delete(0, "end")
+    data_box.pack()
+    positie = 0
+    games_list.sort(key=lambda tup: tup[4])
+    for games in games_list:
+        for game in games:
+            positie += 1
+            data_box.insert(positie, game)
+
+
+def toon_prijs_hl():
+    data_opvragen()
+    data_box.delete(0, "end")
+    data_box.pack()
+    positie = 0
+    games_list.sort(key=lambda tup: tup[4], reverse=True)
+    for games in games_list:
+        for game in games:
+            positie += 1
+            data_box.insert(positie, game)
+
+
+def toon_owners_hl():
+    data_opvragen()
+    data_box.delete(0, "end")
+    data_box.pack()
+    positie = 0
+    games_list.sort(key=lambda tup: tup[5])
+    for games in games_list:
+        for game in games:
+            positie += 1
+            data_box.insert(positie, game)
+
+
+def toon_owners_lh():
+    data_opvragen()
+    data_box.delete(0, "end")
+    data_box.pack()
+    positie = 0
+    games_list.sort(key=lambda tup: tup[5], reverse=True)
+    for games in games_list:
+        for game in games:
+            positie += 1
+            data_box.insert(positie, game)
+
+
+def toon_rating_lh():
+    data_opvragen()
+    data_box.delete(0, "end")
+    data_box.pack()
+    positie = 0
+    games_list.sort(key=lambda tup: tup[6])
+    for games in games_list:
+        for game in games:
+            positie += 1
+            data_box.insert(positie, game)
+
+
+def toon_rating_hl():
+    data_opvragen()
+    data_box.delete(0, "end")
+    data_box.pack()
+    positie = 0
+    games_list.sort(key=lambda tup: tup[6], reverse=True)
+    for games in games_list:
+        for game in games:
+            positie += 1
+            data_box.insert(positie, game)
+
+
+def toon_required_age_lh():
+    data_opvragen()
+    data_box.delete(0, "end")
+    data_box.pack()
+    positie = 0
+    games_list.sort(key=lambda tup: tup[7])
+    for games in games_list:
+        for game in games:
+            positie += 1
+            data_box.insert(positie, game)
+
+
+def toon_required_age_hl():
+    data_opvragen()
+    data_box.delete(0, "end")
+    data_box.pack()
+    positie = 0
+    games_list.sort(key=lambda tup: tup[7], reverse=True)
+    for games in games_list:
+        for game in games:
+            positie += 1
+            data_box.insert(positie, game)
+
 
 root = Tk()
 root.title("Dashboard Steam")
@@ -60,20 +232,21 @@ RechterFrame.pack(side=RIGHT, pady=55, padx=30)
 SorteerTitel = Label(SorteerButtonFrame, text="Sorteren op:", bg="#17202e", fg="white", font=("Calibri", 24, "bold"))
 ToonAlleGames = Button(RechterFrame, text="Toon Games", width=24, font=("Calibri", 14, "bold"), command=toon_spellen)
 Eerste_Spel = Button(LinkerFrame, text="Eerste Spel", width=24, font=("Calibri", 14, "bold"), command=toon_eerste_spel)
-Name_AZ = Button(LinkerFrame, text="Naam (A-Z)", width=24, font=("Calibri", 14, "bold"))
-Name_ZA = Button(RechterFrame, text="Naam (Z-A)", width=24, font=("Calibri", 14, "bold"))
-Genre_AZ = Button(LinkerFrame, text="Genre (A-Z)", width=24, font=("Calibri", 14, "bold"))
-Genre_ZA = Button(RechterFrame, text="Genre (Z-A)", width=24, font=("Calibri", 14, "bold"))
-ReleaseDate_ON = Button(LinkerFrame, text="Releasedatum (oud-nieuw)", width=24, font=("Calibri", 14, "bold"))
-ReleaseDate_NO = Button(RechterFrame, text="Releasedatum (nieuw-oud)", width=24, font=("Calibri", 14, "bold"))
-Price_LH = Button(LinkerFrame, text="Prijs (laag-hoog)", width=24, font=("Calibri", 14, "bold"))
-Price_HL = Button(RechterFrame, text="Prijs (hoog-laag)", width=24, font=("Calibri", 14, "bold"))
-Owners_LH = Button(LinkerFrame, text="Owners (laag-hoog)", width=24, font=("Calibri", 14, "bold"))
-Owners_HL = Button(RechterFrame, text="Owners (hoog-laag)", width=24, font=("Calibri", 14, "bold"))
-Rating_LH = Button(LinkerFrame, text="Rating (laag-hoog)", width=24, font=("Calibri", 14, "bold"))
-Rating_HL = Button(RechterFrame, text="Rating (hoog-laag)", width=24, font=("Calibri", 14, "bold"))
-RequiredAge_LH = Button(LinkerFrame, text="Required Age (laag-hoog)", width=24, font=("Calibri", 14, "bold"))
-RequiredAge_HL = Button(RechterFrame, text="Required Age (hoog-laag)", width=24, font=("Calibri", 14, "bold"))
+Name_AZ = Button(LinkerFrame, text="Naam (A-Z)", width=24, font=("Calibri", 14, "bold"), command=toon_naam_az)
+Name_ZA = Button(RechterFrame, text="Naam (Z-A)", width=24, font=("Calibri", 14, "bold"), command=toon_naam_za)
+Genre_AZ = Button(LinkerFrame, text="Genre (A-Z)", width=24, font=("Calibri", 14, "bold"), command=toon_genre_az)
+Genre_ZA = Button(RechterFrame, text="Genre (Z-A)", width=24, font=("Calibri", 14, "bold"), command=toon_genre_za)
+ReleaseDate_ON = Button(LinkerFrame, text="Releasedatum (oud-nieuw)", width=24, font=("Calibri", 14, "bold"), command=toon_release_date_on)
+ReleaseDate_NO = Button(RechterFrame, text="Releasedatum (nieuw-oud)", width=24, font=("Calibri", 14, "bold"), command=toon_release_date_no)
+Price_LH = Button(LinkerFrame, text="Prijs (laag-hoog)", width=24, font=("Calibri", 14, "bold"), command=toon_prijs_lh)
+Price_HL = Button(RechterFrame, text="Prijs (hoog-laag)", width=24, font=("Calibri", 14, "bold"), command=toon_prijs_hl)
+Owners_LH = Button(LinkerFrame, text="Owners (laag-hoog)", width=24, font=("Calibri", 14, "bold"), command=toon_owners_lh)
+Owners_HL = Button(RechterFrame, text="Owners (hoog-laag)", width=24, font=("Calibri", 14, "bold"), command=toon_owners_hl)
+Rating_LH = Button(LinkerFrame, text="Rating (laag-hoog)", width=24, font=("Calibri", 14, "bold"), command=toon_rating_lh)
+Rating_HL = Button(RechterFrame, text="Rating (hoog-laag)", width=24, font=("Calibri", 14, "bold"), command=toon_rating_hl)
+RequiredAge_LH = Button(LinkerFrame, text="Required Age (laag-hoog)", width=24, font=("Calibri", 14, "bold"), command=toon_required_age_lh)
+RequiredAge_HL = Button(RechterFrame, text="Required Age (hoog-laag)", width=24, font=("Calibri", 14, "bold"), command=toon_required_age_hl)
+
 
 SorteerTitel.place(x=30, y=10)
 Eerste_Spel.pack(pady=10)
@@ -123,3 +296,5 @@ sb.config(command=data_box.yview)
 
 toon_spellen()
 root.mainloop()
+
+print(games_list)
