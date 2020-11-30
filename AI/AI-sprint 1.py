@@ -2,6 +2,7 @@ from tkinter import *
 import requests
 
 github_example = "https://raw.githubusercontent.com/AlphaConsultants/ALPHA/main/AI/textdocumenttest.json"
+
 json_data = requests.get(github_example).json()
 
 games_list = []
@@ -206,7 +207,7 @@ def toon_required_age_hl():
 
 root = Tk()
 root.title("Dashboard Steam")
-root.geometry("1800x1000")
+root.geometry("1500x1000")
 root.configure(bg="#17202e")
 
 
@@ -273,7 +274,7 @@ sb.pack(side=RIGHT, fill=Y)
 
 
 '''Data'''
-data_box = Listbox(DataFrame, width=100, height=18, yscrollcommand=sb.set, font=("Calibri", 14, "bold"))
+data_box = Listbox(DataFrame, width=75, height=18, yscrollcommand=sb.set, font=("Calibri", 14, "bold"))
 sb.config(command=data_box.yview)
 
 
