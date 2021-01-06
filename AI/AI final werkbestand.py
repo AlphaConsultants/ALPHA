@@ -40,7 +40,7 @@ def data_opvragen():
         rating_in_percentage = ((data["positive_ratings"] - data["negative_ratings"]) / data["positive_ratings"]) * 100
         rating_in_percentage_afgerond = str(round(rating_in_percentage, 1))
         data_per_game = data["name"], data["genres"], data["release_date"], data["price"], data[
-            "owners"], rating_in_percentage_afgerond, data["required_age"]
+            "owners"], rating_in_percentage_afgerond
         games_list.append(tuple(data_per_game))
 
 
@@ -141,18 +141,6 @@ def toon_rating_hl():
     informatie_tonen()
 
 
-def toon_required_age_lh():
-    data_opvragen()
-    games_list.sort(key=lambda tup: tup[6])
-    informatie_tonen()
-
-
-def toon_required_age_hl():
-    data_opvragen()
-    games_list.sort(key=lambda tup: tup[6], reverse=True)
-    informatie_tonen()
-
-
 root = Tk()
 root.title("Dashboard Steam")
 root.geometry("1500x1000")
@@ -200,10 +188,7 @@ Rating_LH = Button(LinkerFrame, text="Rating (laag-hoog)", width=24, font=("Cali
                    command=toon_rating_lh)
 Rating_HL = Button(RechterFrame, text="Rating (hoog-laag)", width=24, font=("Calibri", 14, "bold"),
                    command=toon_rating_hl)
-RequiredAge_LH = Button(LinkerFrame, text="Required Age (laag-hoog)", width=24, font=("Calibri", 14, "bold"),
-                        command=toon_required_age_lh)
-RequiredAge_HL = Button(RechterFrame, text="Required Age (hoog-laag)", width=24, font=("Calibri", 14, "bold"),
-                        command=toon_required_age_hl)
+
 
 ''''Terugknop van Datascherm naar Hoofdscherm'''
 Terug = Button(TerugknopFrame, text="Terug naar Hoofdscherm", font=("Calibri", 14, "bold"),
@@ -232,8 +217,6 @@ Owners_LH.pack(pady=10)
 Owners_HL.pack(pady=10)
 Rating_LH.pack(pady=10)
 Rating_HL.pack(pady=10)
-RequiredAge_LH.pack(pady=10)
-RequiredAge_HL.pack(pady=10)
 
 # '''Scrollbar'''
 # sb = Scrollbar(Datascherm)
