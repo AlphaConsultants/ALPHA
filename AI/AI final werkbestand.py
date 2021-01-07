@@ -7,92 +7,129 @@ json_data = requests.get(github_example).json()
 
 games_list = []
 
-def sorteren(keuze):
+
+# def zoeken():
+#     x = 0
+#
+#     while x < len(games_list):
+#         if games_list[x][0] == :
+#             return games_list[x]
+#         x = x + 1
+#     return False
+
+
+# def sorteren(keuze):
+#     '''Sorteren op:
+#     -   keuze 0 = Naam A-Z
+#     -   keuze 1 = Naam Z-A
+#     -   keuze 2 = Genre A-Z
+#     -   keuze 3 = Genre Z-A
+#     -   keuze 4 = Releasedatum Oud - Nieuw
+#     -   keuze 5 = Releasedatum Nieuw - Oud
+#     -   keuze 6 = Prijs Laag - Hoog
+#     -   keuze 7 = Prijs Hoog - Laag
+#     -   keuze 8 = Owners Laag - Hoog
+#     -   keuze 9 = Owners Hoog - Laag
+#     -   keuze 10 = Rating Laag - Hoog
+#     -   keuze 11 = Rating Hoog - Laag'''
+#
+#     n = len(games_list)
+#     if keuze == 0:
+#         for index in range(n):
+#             for g in range(0, n - index - 1):
+#                 if games_list[g][keuze] > games_list[g+1][keuze]:
+#                     games_list[g], games_list[g+1] = games_list[g+1], games_list[g]
+#         return games_list
+#     elif keuze == 1:
+#         for index in range(n):
+#             for g in range(0, n - index - 1):
+#                 if games_list[g][0] < games_list[g+1][0]:
+#                     games_list[g], games_list[g+1] = games_list[g+1], games_list[g]
+#         return games_list
+#     elif keuze == 2:
+#         for index in range(n):
+#             for g in range(0, n - index - 1):
+#                 if games_list[g][1] > games_list[g+1][1]:
+#                     games_list[g], games_list[g+1] = games_list[g+1], games_list[g]
+#         return games_list
+#     elif keuze == 3:
+#         for index in range(n):
+#             for g in range(0, n - index - 1):
+#                 if games_list[g][1] < games_list[g+1][1]:
+#                     games_list[g], games_list[g+1] = games_list[g+1], games_list[g]
+#         return games_list
+#     elif keuze == 4:
+#         for index in range(n):
+#             for g in range(0, n - index - 1):
+#                 if games_list[g][2] > games_list[g+1][2]:
+#                     games_list[g], games_list[g+1] = games_list[g+1], games_list[g]
+#         return games_list
+#     elif keuze == 5:
+#         for index in range(n):
+#             for g in range(0, n - index - 1):
+#                 if games_list[g][2] < games_list[g+1][2]:
+#                     games_list[g], games_list[g+1] = games_list[g+1], games_list[g]
+#         return games_list
+#     elif keuze == 6:
+#         for index in range(n):
+#             for g in range(0, n - index - 1):
+#                 if games_list[g][3] > games_list[g+1][3]:
+#                     games_list[g], games_list[g+1] = games_list[g+1], games_list[g]
+#         return games_list
+#     elif keuze == 7:
+#         for index in range(n):
+#             for g in range(0, n - index - 1):
+#                 if games_list[g][3] < games_list[g+1][3]:
+#                     games_list[g], games_list[g+1] = games_list[g+1], games_list[g]
+#         return games_list
+#     elif keuze == 8:
+#         for index in range(n):
+#             for g in range(0, n - index - 1):
+#                 if games_list[g][4] > games_list[g+1][4]:
+#                     games_list[g], games_list[g+1] = games_list[g+1], games_list[g]
+#         return games_list
+#     elif keuze == 9:
+#         for index in range(n):
+#             for g in range(0, n - index - 1):
+#                 if games_list[g][4] < games_list[g+1][4]:
+#                     games_list[g], games_list[g+1] = games_list[g+1], games_list[g]
+#         return games_list
+#     elif keuze == 10:
+#         for index in range(n):
+#             for g in range(0, n - index - 1):
+#                 if games_list[g][5] > games_list[g+1][5]:
+#                     games_list[g], games_list[g+1] = games_list[g+1], games_list[g]
+#         return games_list
+#     elif keuze == 11:
+#         for index in range(n):
+#             for g in range(0, n - index - 1):
+#                 if games_list[g][5] < games_list[g+1][5]:
+#                     games_list[g], games_list[g+1] = games_list[g+1], games_list[g]
+#         return games_list
+
+
+def sorteren(keuze, reverse):
     '''Sorteren op:
-    -   keuze 0 = Naam A-Z
-    -   keuze 1 = Naam Z-A
-    -   keuze 2 = Genre A-Z
-    -   keuze 3 = Genre Z-A
-    -   keuze 4 = Releasedatum Oud - Nieuw
-    -   keuze 5 = Releasedatum Nieuw - Oud
-    -   keuze 6 = Prijs Laag - Hoog
-    -   keuze 7 = Prijs Hoog - Laag
-    -   keuze 8 = Owners Laag - Hoog
-    -   keuze 9 = Owners Hoog - Laag
-    -   keuze 10 = Rating Laag - Hoog
-    -   keuze 11 = Rating Hoog - Laag'''
+    -   reverse 0 = A-Z, Oud-Nieuw, Laag-Hoog
+    -   reverse 1 = Z-A, Nieuw-Oud, Hoog-Laag
+    -   keuze 0 = Naam
+    -   keuze 1 = Genre
+    -   keuze 2 = Releasedatum
+    -   keuze 3 = Prijs
+    -   keuze 4 = Owners
+    -   keuze 5 = Rating'''
 
     n = len(games_list)
-    if keuze == 0:
+    if reverse == 0:
         for index in range(n):
             for g in range(0, n - index - 1):
                 if games_list[g][keuze] > games_list[g+1][keuze]:
                     games_list[g], games_list[g+1] = games_list[g+1], games_list[g]
         return games_list
-    elif keuze == 1:
+    elif reverse == 1:
         for index in range(n):
             for g in range(0, n - index - 1):
-                if games_list[g][0] < games_list[g+1][0]:
-                    games_list[g], games_list[g+1] = games_list[g+1], games_list[g]
-        return games_list
-    elif keuze == 2:
-        for index in range(n):
-            for g in range(0, n - index - 1):
-                if games_list[g][1] > games_list[g+1][1]:
-                    games_list[g], games_list[g+1] = games_list[g+1], games_list[g]
-        return games_list
-    elif keuze == 3:
-        for index in range(n):
-            for g in range(0, n - index - 1):
-                if games_list[g][1] < games_list[g+1][1]:
-                    games_list[g], games_list[g+1] = games_list[g+1], games_list[g]
-        return games_list
-    elif keuze == 4:
-        for index in range(n):
-            for g in range(0, n - index - 1):
-                if games_list[g][2] > games_list[g+1][2]:
-                    games_list[g], games_list[g+1] = games_list[g+1], games_list[g]
-        return games_list
-    elif keuze == 5:
-        for index in range(n):
-            for g in range(0, n - index - 1):
-                if games_list[g][2] < games_list[g+1][2]:
-                    games_list[g], games_list[g+1] = games_list[g+1], games_list[g]
-        return games_list
-    elif keuze == 6:
-        for index in range(n):
-            for g in range(0, n - index - 1):
-                if games_list[g][3] > games_list[g+1][3]:
-                    games_list[g], games_list[g+1] = games_list[g+1], games_list[g]
-        return games_list
-    elif keuze == 7:
-        for index in range(n):
-            for g in range(0, n - index - 1):
-                if games_list[g][3] < games_list[g+1][3]:
-                    games_list[g], games_list[g+1] = games_list[g+1], games_list[g]
-        return games_list
-    elif keuze == 8:
-        for index in range(n):
-            for g in range(0, n - index - 1):
-                if games_list[g][4] > games_list[g+1][4]:
-                    games_list[g], games_list[g+1] = games_list[g+1], games_list[g]
-        return games_list
-    elif keuze == 9:
-        for index in range(n):
-            for g in range(0, n - index - 1):
-                if games_list[g][4] < games_list[g+1][4]:
-                    games_list[g], games_list[g+1] = games_list[g+1], games_list[g]
-        return games_list
-    elif keuze == 10:
-        for index in range(n):
-            for g in range(0, n - index - 1):
-                if games_list[g][5] > games_list[g+1][5]:
-                    games_list[g], games_list[g+1] = games_list[g+1], games_list[g]
-        return games_list
-    elif keuze == 11:
-        for index in range(n):
-            for g in range(0, n - index - 1):
-                if games_list[g][5] < games_list[g+1][5]:
+                if games_list[g][keuze] < games_list[g+1][keuze]:
                     games_list[g], games_list[g+1] = games_list[g+1], games_list[g]
         return games_list
 
@@ -160,73 +197,73 @@ def toon_eerste_spel():
 
 def toon_naam_az():
     data_opvragen()
-    sorteren(0)
+    sorteren(0, 0)
     informatie_tonen()
 
 
 def toon_naam_za():
     data_opvragen()
-    sorteren(1)
+    sorteren(0, 1)
     informatie_tonen()
 
 
 def toon_genre_az():
     data_opvragen()
-    sorteren(2)
+    sorteren(1, 0)
     informatie_tonen()
 
 
 def toon_genre_za():
     data_opvragen()
-    sorteren(3)
+    sorteren(1, 1)
     informatie_tonen()
 
 
 def toon_release_date_on():
     data_opvragen()
-    sorteren(4)
+    sorteren(2, 0)
     informatie_tonen()
 
 
 def toon_release_date_no():
     data_opvragen()
-    sorteren(5)
+    sorteren(2, 1)
     informatie_tonen()
 
 
 def toon_prijs_lh():
     data_opvragen()
-    sorteren(6)
+    sorteren(3, 0)
     informatie_tonen()
 
 
 def toon_prijs_hl():
     data_opvragen()
-    sorteren(7)
+    sorteren(3, 1)
     informatie_tonen()
 
 
 def toon_owners_hl():
     data_opvragen()
-    sorteren(8)
+    sorteren(4, 0)
     informatie_tonen()
 
 
 def toon_owners_lh():
     data_opvragen()
-    sorteren(9)
+    sorteren(4, 1)
     informatie_tonen()
 
 
 def toon_rating_lh():
     data_opvragen()
-    sorteren(10)
+    sorteren(5, 0)
     informatie_tonen()
 
 
 def toon_rating_hl():
     data_opvragen()
-    sorteren(11)
+    sorteren(5, 1)
     informatie_tonen()
 
 
@@ -289,15 +326,6 @@ Terug = Button(TerugknopFrame, text="Terug naar Hoofdscherm", font=("Calibri", 1
                command=hoofdscherm_tonen)
 
 
-NameLabel = Entry(Datascherm1, text="AppID", fg='blue', font=('Arial', 12, 'bold'))
-GenreLabel = Entry(Datascherm1, text="AppID", fg='blue', font=('Arial', 12, 'bold'))
-DateLabel = Entry(Datascherm1, text="AppID", fg='blue', font=('Arial', 12, 'bold'))
-PriceLabel = Entry(Datascherm1, text="AppID", fg='blue', font=('Arial', 12, 'bold'))
-OwnersLabel = Entry(Datascherm1, text="AppID", fg='blue', font=('Arial', 12, 'bold'))
-RatingLabel = Entry(Datascherm1, text="AppID", fg='blue', font=('Arial', 12, 'bold'))
-RequiredAgeLabel = Entry(Datascherm1, text="AppID", fg='blue', font=('Arial', 12, 'bold'))
-
-
 SorteerTitel.place(x=30, y=10)
 Eerste_Spel.pack(pady=10)
 ToonAlleGames.pack(pady=10)
@@ -317,3 +345,4 @@ Rating_HL.pack(pady=10)
 
 hoofdscherm_tonen()
 root.mainloop()
+

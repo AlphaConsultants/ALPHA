@@ -226,15 +226,6 @@ Terug = Button(TerugknopFrame, text="Terug naar Hoofdscherm", font=("Calibri", 1
                command=hoofdscherm_tonen)
 
 
-NameLabel = Entry(Datascherm1, text="AppID", fg='blue', font=('Arial', 12, 'bold'))
-GenreLabel = Entry(Datascherm1, text="AppID", fg='blue', font=('Arial', 12, 'bold'))
-DateLabel = Entry(Datascherm1, text="AppID", fg='blue', font=('Arial', 12, 'bold'))
-PriceLabel = Entry(Datascherm1, text="AppID", fg='blue', font=('Arial', 12, 'bold'))
-OwnersLabel = Entry(Datascherm1, text="AppID", fg='blue', font=('Arial', 12, 'bold'))
-RatingLabel = Entry(Datascherm1, text="AppID", fg='blue', font=('Arial', 12, 'bold'))
-RequiredAgeLabel = Entry(Datascherm1, text="AppID", fg='blue', font=('Arial', 12, 'bold'))
-
-
 SorteerTitel.place(x=30, y=10)
 Eerste_Spel.pack(pady=10)
 ToonAlleGames.pack(pady=10)
