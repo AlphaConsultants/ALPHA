@@ -26,7 +26,7 @@ def sorteren(keuze):
     if keuze == 0:
         for index in range(n):
             for g in range(0, n - index - 1):
-                if games_list[g][0] > games_list[g+1][0]:
+                if games_list[g][keuze] > games_list[g+1][keuze]:
                     games_list[g], games_list[g+1] = games_list[g+1], games_list[g]
         return games_list
     elif keuze == 1:
