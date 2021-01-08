@@ -200,26 +200,6 @@
         "price":24.99
     },
     {
-        "appid":11590,
-        "name":"Hospital Tycoon",
-        "release_date":"2009-02-13",
-        "english":1,
-        "developer":"Deep Red Limited",
-        "publisher":"Codemasters",
-        "platforms":"windows",
-        "required_age":0,
-        "categories":"Single-player",
-        "genres":"Simulation",
-        "steamspy_tags":"Simulation;Management;Singleplayer",
-        "achievements":0,
-        "positive_ratings":175,
-        "negative_ratings":301,
-        "average_playtime":119,
-        "median_playtime":176,
-        "owners":"200000-500000",
-        "price":3.49
-    },
-    {
         "appid":12340,
         "name":"Jack Keane",
         "release_date":"2008-06-27",
