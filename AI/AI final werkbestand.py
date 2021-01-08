@@ -7,6 +7,28 @@ json_data = requests.get(github_example).json()
 
 games_list = []
 
+def binary_search_recursive(lst, target):
+    mini = 0                #Zet het minimum op 0
+    maxi = len(lst) - 1     #Zet het maximum altijd op het eind van de lijst
+    if lst:                 #Controle of de lijst leeg is (basecase2) maar volgens mij onnodig bij deze opdracht.
+
+        while mini <= maxi:              #Controleer of het maximum groter of gelijk is dan het minimum (kan ook if zijn)
+            mid = (mini + maxi) // 2     #minimum en het maximum bij elkaar gedeeld door 2 met floor division is het midden
+
+            if target in lst[mid]:       #Als het midden de target is dan returnen we True. (Base case 1)
+                return True
+
+            #Recursie \/
+            if lst[mid] < target:     #Als het midden van de lijst nu kleiner is dan het target dan gaan we recursie uitoefenen.
+                return binary_search_recursive(lst[mid + 1:], target)
+            # Het midden is de target geworden en returned True
+
+            elif lst[mid] > target:   #Als het midden van de lijst nu groter is dan het target dan gaan we recursie uitoefenen.
+                return binary_search_recursive(lst[:mid], target)
+            #Het midden is de target geworden en returned True
+
+    return False
+
 
 # def zoeken():
 #     x = 0
@@ -289,6 +311,7 @@ titel.pack(pady=90)
 SorteerButtonFrame = Frame(Hoofdscherm, bg="#17202e")
 LinkerFrame = Frame(SorteerButtonFrame, bg="#17202e")
 RechterFrame = Frame(SorteerButtonFrame, bg="#17202e")
+ZoekFrame = Frame(Hoofdscherm, bg="#17202e")
 
 
 Hoofdscherm.pack()
@@ -319,6 +342,10 @@ Rating_LH = Button(LinkerFrame, text="Rating (laag-hoog)", width=24, font=("Cali
                    command=toon_rating_lh)
 Rating_HL = Button(RechterFrame, text="Rating (hoog-laag)", width=24, font=("Calibri", 14, "bold"),
                    command=toon_rating_hl)
+
+
+'''Zoeken Entry + Knop'''
+ZoekTitel = Label(ZoekFrame, text="Zoeken:", bg="#17202e", fg="white", font=("Calibri", 24, "bold"))
 
 
 ''''Terugknop van Datascherm naar Hoofdscherm'''
