@@ -114,6 +114,7 @@ def zoeken(choice, target):
     -   choice 1 = Genre"""
     games_list2 = []
     if not target:
+        ZoekenInDataScherm1.pack_forget()
         waarschuwing = "Voer eerst een zoekopdracht in."
         showinfo(title='popup', message=waarschuwing)
     else:
@@ -136,6 +137,7 @@ def zoeken(choice, target):
             else:
                 bericht2 = 'Uw zoekopdracht komt niet voor in de lijst.'
                 showinfo(title='popup', message=bericht2)
+                ZoekenInDataScherm1.pack_forget()
                 Zoekvak.delete(0, "end")
                 return False
 
