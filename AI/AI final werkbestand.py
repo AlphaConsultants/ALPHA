@@ -7,28 +7,6 @@ json_data = requests.get(github_example).json()
 
 games_list = []
 
-def binary_search_recursive(lst, target):
-    mini = 0                #Zet het minimum op 0
-    maxi = len(lst) - 1     #Zet het maximum altijd op het eind van de lijst
-    if lst:                 #Controle of de lijst leeg is (basecase2) maar volgens mij onnodig bij deze opdracht.
-
-        while mini <= maxi:              #Controleer of het maximum groter of gelijk is dan het minimum (kan ook if zijn)
-            mid = (mini + maxi) // 2     #minimum en het maximum bij elkaar gedeeld door 2 met floor division is het midden
-
-            if target in lst[mid]:       #Als het midden de target is dan returnen we True. (Base case 1)
-                return True
-
-            #Recursie \/
-            if lst[mid] < target:     #Als het midden van de lijst nu kleiner is dan het target dan gaan we recursie uitoefenen.
-                return binary_search_recursive(lst[mid + 1:], target)
-            # Het midden is de target geworden en returned True
-
-            elif lst[mid] > target:   #Als het midden van de lijst nu groter is dan het target dan gaan we recursie uitoefenen.
-                return binary_search_recursive(lst[:mid], target)
-            #Het midden is de target geworden en returned True
-
-    return False
-
 
 # def zoeken():
 #     x = 0
@@ -40,7 +18,7 @@ def binary_search_recursive(lst, target):
 #     return False
 
 
-# def sorteren(keuze):
+# def SorterenOp(keuze):
 #     '''Sorteren op:
 #     -   keuze 0 = Naam A-Z
 #     -   keuze 1 = Naam Z-A
@@ -130,6 +108,16 @@ def binary_search_recursive(lst, target):
 #         return games_list
 
 
+def data_opvragen():
+    games_list.clear()
+    for data in json_data:
+        rating_in_percentage = ((data["positive_ratings"] - data["negative_ratings"]) / data["positive_ratings"]) * 100
+        rating_in_percentage_afgerond = str(round(rating_in_percentage, 1))
+        data_per_game = data["name"], data["genres"], data["release_date"], data["price"], data[
+            "owners"], rating_in_percentage_afgerond
+        games_list.append(tuple(data_per_game))
+
+
 def sorteren(keuze, reverse):
     '''Sorteren op:
     -   reverse 0 = A-Z, Oud-Nieuw, Laag-Hoog
@@ -157,7 +145,7 @@ def sorteren(keuze, reverse):
 
 
 def datascherm1_tonen():
-    Hoofdscherm.pack_forget()
+    Sorteerscherm.pack_forget()
     Datascherm2.pack_forget()
     TerugknopFrame.pack_forget()
     TerugknopFrame.pack(pady=20)
@@ -167,7 +155,7 @@ def datascherm1_tonen():
 
 
 def datascherm2_tonen():
-    Hoofdscherm.pack_forget()
+    Sorteerscherm.pack_forget()
     TerugknopFrame.pack_forget()
     Datascherm1.pack_forget()
     TerugknopFrame.pack(pady=20)
@@ -177,20 +165,10 @@ def datascherm2_tonen():
 
 
 def hoofdscherm_tonen():
+    Sorteerscherm.pack_forget()
     Datascherm.pack_forget()
     TerugknopFrame.pack_forget()
-    Hoofdscherm.pack()
-
-
-def data_opvragen():
-    games_list.clear()
-    for data in json_data:
-        rating_in_percentage = ((data["positive_ratings"] - data["negative_ratings"]) / data["positive_ratings"]) * 100
-        rating_in_percentage_afgerond = str(round(rating_in_percentage, 1))
-        data_per_game = data["name"], data["genres"], data["release_date"], data["price"], data[
-            "owners"], rating_in_percentage_afgerond
-        games_list.append(tuple(data_per_game))
-
+    Beginscherm.pack()
 
 def informatie_tonen():
     datascherm1_tonen()
@@ -198,7 +176,7 @@ def informatie_tonen():
     total_columns = len(games_list[0])
     for games in range(total_rows):
         for game in range(total_columns):
-            e = Entry(Datascherm1, fg='blue', font=('Arial', 12, 'bold'))
+            e = Entry(Datascherm1, fg='blue', font=('Arial', 12, 'bold'), width=18)
             e.grid(row=games, column=game)
             e.insert(END, games_list[games][game])
 
@@ -295,26 +273,26 @@ root.geometry("1500x1000")
 root.configure(bg="#17202e")
 
 
-Hoofdscherm = Frame(root)
-Datascherm = Frame(root)
-TerugknopFrame = Frame(root)
+Beginscherm = Frame(root)
+Sorteerscherm = Frame(Beginscherm)
+Datascherm = Frame(Beginscherm)
+TerugknopFrame = Frame(Beginscherm)
 Datascherm1 = Frame(Datascherm)
 Datascherm2 = Frame(Datascherm)
 
 
 '''Titel van dashboard'''
-titel = Label(root, text="Alpha Consultants", bg="#17202e", fg="white", font=("Calibri", 40, "bold", "underline"))
+titel = Label(Beginscherm, text="Alpha Consultants", bg="#17202e", fg="white", font=("Calibri", 40, "bold", "underline"))
 titel.pack(pady=90)
 
 
 '''Frames voor widgets'''
-SorteerButtonFrame = Frame(Hoofdscherm, bg="#17202e")
+SorteerButtonFrame = Frame(Sorteerscherm, bg="#17202e")
 LinkerFrame = Frame(SorteerButtonFrame, bg="#17202e")
 RechterFrame = Frame(SorteerButtonFrame, bg="#17202e")
-ZoekFrame = Frame(Hoofdscherm, bg="#17202e")
+ZoekFrame = Frame(Sorteerscherm, bg="#17202e")
 
 
-Hoofdscherm.pack()
 SorteerButtonFrame.pack(side=RIGHT)
 LinkerFrame.pack(side=LEFT, pady=55, padx=30)
 RechterFrame.pack(side=RIGHT, pady=55, padx=30)
