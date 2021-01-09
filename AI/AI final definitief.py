@@ -279,18 +279,19 @@ GesorteerdeDataScherm2 = Frame(root, bg="#17202e")
 ZoekenInDataScherm = Frame(root, bg="#17202e")
 ZoekenInDataScherm1 = Frame(root, bg="#17202e")
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FRAME-BEGINSCHERM~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FRAME-BEGINSCHERM~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 """Titel van eerste scherm GUI en Label voor het maken van een keuze"""
 BeginschermTitel = Label(BeginScherm, text="Alpha Consultants", bg="#17202e", fg="white", font=("Calibri", 40, "bold", "underline"))
 keuze = Label(BeginScherm, text="Maak een keuze:", bg="#17202e", fg="white", font=("Calibri", 22, "bold"))
 
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~FRAME-GESORTEERDE DATASCHERM~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~FRAME-GESORTEERDE DATASCHERM~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 """Titel van ongesorteerde scherm GUI"""
 OngesorteerdTitel = Label(OngesorteerdeDataScherm, text="Data ongesorteerd:", bg="#17202e", fg="white", font=("Calibri", 22, "bold"))
 
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FRAME-SORTEEROPTIES SCHERM~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FRAME-SORTEEROPTIES SCHERM~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 """Titel van Sorteeropties scherm en buttons voor het sorteren"""
 EersteSpelTonen = Label(SorteerButtonsScherm, text="Toon eerste spel in ongesorteerde lijst:", bg="#17202e", fg="white", font=("Calibri", 22, "bold"))
 Eerste_Spel = Button(SorteerButtonsScherm, text="Eerste Spel", width=24, font=("Calibri", 14, "bold"), command=eerste_spel_in_gesorteerdescherm_tonen)
