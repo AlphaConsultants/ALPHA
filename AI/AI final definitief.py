@@ -106,7 +106,6 @@ def zoeken_in_datascherm_tonen():
     ZoekenInDataScherm.pack()
 
 
-
 def zoeken(choice, target):
     """"Functie zoekt in opgehaalde data naar de zoekopdracht
         Zoeken op:
@@ -117,29 +116,29 @@ def zoeken(choice, target):
         ZoekenInDataScherm1.pack_forget()
         waarschuwing = "Voer eerst een zoekopdracht in."
         showinfo(title='popup', message=waarschuwing)
+        ZoekenInDataScherm1.destroy()
     else:
-        while True:
-            for name in games_list:
-                if target in name[choice]:
-                    games_list2.append(tuple(name))
-                    bericht = 'Uw zoekopdracht komt voor in de lijst.'
-                    showinfo(title='popup', message=bericht)
-                    Zoekvak.delete(0, "end")
-                    total_rows = len(games_list2)
-                    total_columns = len(games_list2[0])
-                    for games in range(total_rows):
-                        for game in range(total_columns):
-                            e = Entry(ZoekenInDataScherm1, fg='blue', font=('Arial', 12, 'bold'), width=18)
-                            e.grid(row=games, column=game)
-                            e.insert(END, games_list2[games][game])
-                            ZoekenInDataScherm1.pack()
-                    return False
-            else:
-                bericht2 = 'Uw zoekopdracht komt niet voor in de lijst.'
-                showinfo(title='popup', message=bericht2)
-                ZoekenInDataScherm1.pack_forget()
-                Zoekvak.delete(0, "end")
-                return False
+        games_list2.clear()
+        for char in games_list:
+            if target in char[choice]:
+                games_list2.append(tuple(char))
+        if not games_list2:
+            bericht2 = 'Uw zoekopdracht komt niet voor in de lijst.'
+            showinfo(title='popup', message=bericht2)
+            ZoekenInDataScherm1.pack_forget()
+            Zoekvak.delete(0, "end")
+        else:
+            bericht = 'Uw zoekopdracht komt voor in de lijst.'
+            showinfo(title='popup', message=bericht)
+            Zoekvak.delete(0, "end")
+            total_rows = len(games_list2)
+            total_columns = len(games_list2[0])
+            for games in range(total_rows):
+                for game in range(total_columns):
+                    e = Entry(ZoekenInDataScherm1, fg='blue', font=('Arial', 12, 'bold'), width=18)
+                    e.grid(row=games, column=game)
+                    e.insert(END, games_list2[games][game])
+                ZoekenInDataScherm1.pack()
 
 
 def naam_clicked():
