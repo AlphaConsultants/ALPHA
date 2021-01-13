@@ -3,11 +3,9 @@ from tkinter import ttk
 from tkinter.messagebox import showinfo
 import requests
 
-
 """Data opvragen van onderstaande link d.m.v. requests.get"""
 github_example = "https://raw.githubusercontent.com/AlphaConsultants/ALPHA/main/AI/textdocumenttest.json"
 json_data = requests.get(github_example).json()
-
 
 games_list = []
 
@@ -16,12 +14,20 @@ def data_in_datastructuur():
     """Functie haalt nuttige info uit json en zet het in games_list als tuples. games_list = [(),(),()]"""
     games_list.clear()
     for data in json_data:
+        centrum = 50
         upper_name = data["name"].upper()
         upper_genre = data["genres"].upper()
-        rating_in_percentage = ((data["positive_ratings"] - data["negative_ratings"]) / data["positive_ratings"]) * 100
-        rating_in_percentage_afgerond = str(round(rating_in_percentage, 1))
-        data_per_game = upper_name, upper_genre, data["release_date"], data["price"], rating_in_percentage_afgerond
-        games_list.append(tuple(data_per_game))
+        total_ratings = data["positive_ratings"] + data["negative_ratings"]
+        rating_in_percentage = data["positive_ratings"] / total_ratings * 100
+        rating_in_percentage_afgerond = round(rating_in_percentage, 1)
+        if rating_in_percentage_afgerond >= centrum:
+            data_per_game = upper_name, upper_genre, data["release_date"], data[
+                "price"], total_ratings, rating_in_percentage_afgerond, "Positive Rated"
+            games_list.append(tuple(data_per_game))
+        else:
+            data_per_game = upper_name, upper_genre, data["release_date"], data[
+                "price"], total_ratings, rating_in_percentage_afgerond, "Negative Rated"
+            games_list.append(tuple(data_per_game))
 
 
 def data_in_tabel(lst):
@@ -52,15 +58,38 @@ def bubblesort(lst, choice, reverse):
     if reverse == 0:
         for index in range(n):
             for g in range(0, n - index - 1):
-                if lst[g][choice] > lst[g+1][choice]:
-                    lst[g], lst[g+1] = lst[g+1], lst[g]
+                if lst[g][choice] > lst[g + 1][choice]:
+                    lst[g], lst[g + 1] = lst[g + 1], lst[g]
         return lst
     elif reverse == 1:
         for index in range(n):
             for g in range(0, n - index - 1):
-                if lst[g][choice] < lst[g+1][choice]:
-                    lst[g], lst[g+1] = lst[g+1], lst[g]
+                if lst[g][choice] < lst[g + 1][choice]:
+                    lst[g], lst[g + 1] = lst[g + 1], lst[g]
         return lst
+
+
+def freq(lst, choice):
+    """
+    Retourneer een dictionary met als keys de waardes die voorkomen in lst en
+    als value het aantal voorkomens van die waarde.
+    """
+    freqs = dict()
+    for tuples in lst:
+        if tuples[choice] in freqs:
+            freqs[tuples[choice]] += 1
+        else:
+            freqs[tuples[choice]] = 1
+    return freqs
+
+
+def modes(lst, choice):
+    """ Retourneer een gesorteerde lijst (list) van de modi van lijst lst. """
+    modi = []
+    for value in freq(lst, choice):
+        if freq(lst, choice)[value] == max(freq(lst, choice).values()):
+            modi.append(value)
+    return modi[0]
 
 
 def beginscherm_tonen():
@@ -222,27 +251,32 @@ def toon_prijs_hl():
 
 
 def toon_rating_lh():
-    """Functie toont tabel gesorteerd op Rating"""
-    bubblesort(games_list, 4, 0)
+    """Functie toont tabel gesorteerd op Rating %"""
+    bubblesort(games_list, 5, 0)
     GesorteerdTitel["text"] = "Rating (laag-hoog)"
     gesorteerde_datacherm_tonen()
 
 
 def toon_rating_hl():
-    """Functie toont tabel gesorteerd op Rating"""
-    bubblesort(games_list, 4, 1)
+    """Functie toont tabel gesorteerd op Rating %"""
+    bubblesort(games_list, 5, 1)
     GesorteerdTitel["text"] = "Rating (hoog-laag)"
     gesorteerde_datacherm_tonen()
 
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~GUI~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+def toon_feitje():
+    data_in_datastructuur()
+    MeestVoorkomendeGenre = modes(games_list, 1)
+    bericht = "Het Genre '" + MeestVoorkomendeGenre + "' komt het vaakst voor in de huidige lijst."
+    showinfo(title='popup', message=bericht)
 
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~GUI~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 root = Tk()
 root.title("Dashboard Steam")
 root.geometry("1500x1000")
 root.configure(bg="#17202e")
-
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FRAMES~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 """Frame van eerste scherm GUI"""
@@ -265,73 +299,81 @@ ZoekenInDataScherm = Frame(root, bg="#17202e")
 """Frame van resultaat na het zoeken"""
 ResultaatScherm = Frame(root, bg="#17202e")
 
-
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FRAME-BEGINSCHERM~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 """Titel van eerste scherm GUI en Label voor het maken van een keuze"""
-BeginschermTitel = Label(BeginScherm, text="Alpha Consultants", bg="#17202e", fg="white", font=("Calibri", 40, "bold", "underline"))
+BeginschermTitel = Label(BeginScherm, text="Alpha Consultants", bg="#17202e", fg="white",
+                         font=("Calibri", 40, "bold", "underline"))
 keuze = Label(BeginScherm, text="Maak een keuze:", bg="#17202e", fg="white", font=("Calibri", 22, "bold"))
-
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~FRAME-ONGESORTEERDE DATASCHERM~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 """Titel van ongesorteerde scherm GUI"""
-OngesorteerdTitel = Label(OngesorteerdeDataScherm, text="Data ongesorteerd:", bg="#17202e", fg="white", font=("Calibri", 22, "bold"))
+OngesorteerdTitel = Label(OngesorteerdeDataScherm, text="Data ongesorteerd:", bg="#17202e", fg="white",
+                          font=("Calibri", 22, "bold"))
 Tabel = ttk.Treeview(GesorteerdeDataScherm1, height=20)
-
-Tabel["columns"] = ("Name", "Genre", "Releasedate", "Price", "Rating in %")
+Tabel["columns"] = ("Name", "Genre", "Releasedate", "Price", "Total ratings", "Rating in %", "Rating")
 
 Tabel.column("#0", width=0, minwidth=0)
 Tabel.column("Name", anchor=W, width=250)
 Tabel.column("Genre", anchor=W, width=160)
 Tabel.column("Releasedate", anchor=CENTER, width=120)
 Tabel.column("Price", anchor=CENTER, width=80)
+Tabel.column("Total ratings", anchor=CENTER, width=100)
 Tabel.column("Rating in %", anchor=CENTER, width=100)
-
+Tabel.column("Rating", anchor=CENTER, width=130)
 
 Tabel.heading("#0", text="", anchor=W)
 Tabel.heading("Name", text="Name", anchor=W)
-Tabel.heading("Genre", text="Genre", anchor=CENTER)
+Tabel.heading("Genre", text="Genre", anchor=W)
 Tabel.heading("Releasedate", text="Releasedate", anchor=CENTER)
 Tabel.heading("Price", text="Price", anchor=CENTER)
+Tabel.heading("Total ratings", text="Total ratings", anchor=CENTER)
 Tabel.heading("Rating in %", text="Rating in %", anchor=CENTER)
+Tabel.heading("Rating", text="Rating", anchor=CENTER)
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FRAME-SORTEEROPTIES SCHERM~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 """Titel van Sorteeropties scherm en buttons voor het sorteren"""
-EersteSpelTonen = Label(SorteerButtonsScherm, text="Toon eerste spel in ongesorteerde lijst:", bg="#17202e", fg="white", font=("Calibri", 22, "bold"))
-Eerste_Spel = Button(SorteerButtonsScherm, text="Eerste Spel", width=24, font=("Calibri", 14, "bold"), command=eerste_spel_in_gesorteerdescherm_tonen)
-SorterenOp = Label(SorteerButtonsScherm, text="Sorteren op:", bg="#17202e", fg="white", font=("Calibri", 22, "bold", "underline"))
+EersteSpelTonen = Label(SorteerButtonsScherm, text="Toon eerste spel in ongesorteerde lijst:", bg="#17202e", fg="white",
+                        font=("Calibri", 22, "bold"))
+Eerste_Spel = Button(SorteerButtonsScherm, text="Eerste Spel", width=24, font=("Calibri", 14, "bold"),
+                     command=eerste_spel_in_gesorteerdescherm_tonen)
+SorterenOp = Label(SorteerButtonsScherm, text="Sorteren op:", bg="#17202e", fg="white",
+                   font=("Calibri", 22, "bold", "underline"))
 Name_AZ = Button(SorteerButtonsScherm1, text="Naam (A-Z)", width=24, font=("Calibri", 14, "bold"), command=toon_naam_az)
 Name_ZA = Button(SorteerButtonsScherm1, text="Naam (Z-A)", width=24, font=("Calibri", 14, "bold"), command=toon_naam_za)
-Genre_AZ = Button(SorteerButtonsScherm1, text="Genre (A-Z)", width=24, font=("Calibri", 14, "bold"), command=toon_genre_az)
-Genre_ZA = Button(SorteerButtonsScherm1, text="Genre (Z-A)", width=24, font=("Calibri", 14, "bold"), command=toon_genre_za)
+Genre_AZ = Button(SorteerButtonsScherm1, text="Genre (A-Z)", width=24, font=("Calibri", 14, "bold"),
+                  command=toon_genre_az)
+Genre_ZA = Button(SorteerButtonsScherm1, text="Genre (Z-A)", width=24, font=("Calibri", 14, "bold"),
+                  command=toon_genre_za)
 ReleaseDate_ON = Button(SorteerButtonsScherm1, text="Releasedatum (oud-nieuw)", width=24, font=("Calibri", 14, "bold"),
                         command=toon_release_date_on)
 ReleaseDate_NO = Button(SorteerButtonsScherm1, text="Releasedatum (nieuw-oud)", width=24, font=("Calibri", 14, "bold"),
                         command=toon_release_date_no)
-Price_LH = Button(SorteerButtonsScherm1, text="Prijs (laag-hoog)", width=24, font=("Calibri", 14, "bold"), command=toon_prijs_lh)
-Price_HL = Button(SorteerButtonsScherm1, text="Prijs (hoog-laag)", width=24, font=("Calibri", 14, "bold"), command=toon_prijs_hl)
-Rating_LH = Button(SorteerButtonsScherm1, text="Rating (laag-hoog)", width=24, font=("Calibri", 14, "bold"),
+Price_LH = Button(SorteerButtonsScherm1, text="Prijs (laag-hoog)", width=24, font=("Calibri", 14, "bold"),
+                  command=toon_prijs_lh)
+Price_HL = Button(SorteerButtonsScherm1, text="Prijs (hoog-laag)", width=24, font=("Calibri", 14, "bold"),
+                  command=toon_prijs_hl)
+Rating_LH = Button(SorteerButtonsScherm1, text="Rating % (laag-hoog)", width=24, font=("Calibri", 14, "bold"),
                    command=toon_rating_lh)
-Rating_HL = Button(SorteerButtonsScherm1, text="Rating (hoog-laag)", width=24, font=("Calibri", 14, "bold"),
+Rating_HL = Button(SorteerButtonsScherm1, text="Rating % (hoog-laag)", width=24, font=("Calibri", 14, "bold"),
                    command=toon_rating_hl)
-
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~FRAME-GESORTEERDE DATASCHERM~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 """Titel van gesorteerde scherm GUI"""
 GesorteerdTitel = Label(GesorteerdeDataScherm, text="", bg="#17202e", fg="white", font=("Calibri", 22, "bold"))
 
-
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~FRAME-ZOEKEN IN DATASCHERM~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 """Titel van zoeken in data scherm GUI en Buttons met zoekvak"""
-ZoekschermTitel = Label(ZoekenInDataScherm, text="Type uw zoekopdracht in het vakje hieronder en klik op één van de buttons waarop u wilt zoeken.",
+ZoekschermTitel = Label(ZoekenInDataScherm,
+                        text="Type uw zoekopdracht in het vakje hieronder en klik op één van de buttons waarop u wilt zoeken.",
                         bg="#17202e", fg="white", font=("Arial", 14, "bold"))
 Zoekvak = Entry(ZoekenInDataScherm, width=50, fg='blue', font=('Arial', 12, 'bold'))
 NameButton = Button(ZoekenInDataScherm, text="Naam", width=15, font=("Calibri", 14, "bold"), command=naam_clicked)
 GenreButton = Button(ZoekenInDataScherm, text="Genre", width=15, font=("Calibri", 14, "bold"), command=genre_clicked)
 
-
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~NAVIGEREN TUSSEN SCHERMEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 """Buttons voor het navigeren tussen schermen in de GUI"""
-OngesorteerdeDataButton = Button(BeginScherm, text="Data ongesorteerd weergeven", width=30, font=("Calibri", 14, "bold"),
+OngesorteerdeDataButton = Button(BeginScherm, text="Data ongesorteerd weergeven", width=30,
+                                 font=("Calibri", 14, "bold"),
                                  command=ongesorteerde_datascherm_tonen)
 VanOngesorteerdeDataSchermNaarBeginscherm = Button(OngesorteerdeDataScherm, text="Terug", font=("Calibri", 14, "bold"),
                                                    command=beginscherm_tonen)
@@ -340,13 +382,16 @@ SorteerButton = Button(BeginScherm, text="Data sorteren", width=30, font=("Calib
 VanSorteerButtonsSchermNaarBeginscherm = Button(SorteerButtonsScherm, text="Terug", font=("Calibri", 14, "bold"),
                                                 command=beginscherm_tonen)
 VanGesorteerdeDataSchermNaarSorteerButtonsScherm = Button(GesorteerdeDataScherm, text="Terug",
-                                                          font=("Calibri", 14, "bold"), command=sorteeroptiesscherm_tonen)
+                                                          font=("Calibri", 14, "bold"),
+                                                          command=sorteeroptiesscherm_tonen)
 ZoekenInDataButton = Button(BeginScherm, text="Zoeken in Data", width=30, font=("Calibri", 14, "bold"),
                             command=zoeken_in_datascherm_tonen)
 VanZoekenInDataSchermNaarBeginscherm = Button(ZoekenInDataScherm, text="Terug", font=("Calibri", 14, "bold"),
                                               command=beginscherm_tonen)
 VanResultaatSchermNaarZoekenInDataScherm = Button(ResultaatScherm, text="Terug", font=("Calibri", 14, "bold"),
-                                              command=zoeken_in_datascherm_tonen)
+                                                  command=zoeken_in_datascherm_tonen)
+FeitButton = Button(BeginScherm, text="Leuk Feitje!", bg="orange", fg="black", font=("Calibri", 14, "bold"),
+                    command=toon_feitje)
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~POSITIES~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 """Posities van widgets in Beginscherm"""
@@ -355,6 +400,7 @@ keuze.pack(pady=50)
 OngesorteerdeDataButton.pack(pady=20)
 SorteerButton.pack(pady=20)
 ZoekenInDataButton.pack(pady=20)
+FeitButton.pack(pady=20)
 
 """Posities van widgets in OngesorteerdeDataScherm"""
 VanOngesorteerdeDataSchermNaarBeginscherm.pack(pady=50)
@@ -387,7 +433,6 @@ ZoekschermTitel.pack()
 Zoekvak.pack(pady=20)
 NameButton.pack()
 GenreButton.pack()
-
 
 beginscherm_tonen()
 root.mainloop()
