@@ -275,13 +275,13 @@ keuze = Label(BeginScherm, text="Maak een keuze:", bg="#17202e", fg="white", fon
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~FRAME-ONGESORTEERDE DATASCHERM~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 """Titel van ongesorteerde scherm GUI"""
 OngesorteerdTitel = Label(OngesorteerdeDataScherm, text="Data ongesorteerd:", bg="#17202e", fg="white", font=("Calibri", 22, "bold"))
-Tabel = ttk.Treeview(GesorteerdeDataScherm1)
+Tabel = ttk.Treeview(GesorteerdeDataScherm1, height=20)
 
 Tabel["columns"] = ("Name", "Genre", "Releasedate", "Price", "Rating in %")
 
 Tabel.column("#0", width=0, minwidth=0)
-Tabel.column("Name", anchor=W, width=160)
-Tabel.column("Genre", anchor=CENTER, width=120)
+Tabel.column("Name", anchor=W, width=250)
+Tabel.column("Genre", anchor=W, width=160)
 Tabel.column("Releasedate", anchor=CENTER, width=120)
 Tabel.column("Price", anchor=CENTER, width=80)
 Tabel.column("Rating in %", anchor=CENTER, width=100)
