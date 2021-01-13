@@ -162,7 +162,7 @@ def eerste_spel_in_gesorteerdescherm_tonen():
     GesorteerdeDataScherm1.pack()
     data_in_datastructuur()
     GesorteerdTitel["text"] = "Eerste spel in ongesorteerde lijst"
-    Tabel.insert(parent="", index="end", iid=0, text="", values=games_list[0])
+    Tabel.insert(parent="", index="end", iid=0, text="", values=games_list[0][0])
 
 
 def toon_naam_az():
