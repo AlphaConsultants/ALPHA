@@ -145,6 +145,7 @@ def zoeken_in_datascherm_tonen():
     Zoekvak.delete(0, "end")
     ZoekenInDataScherm.pack()
 
+
 def servo_beginscherm():
     for i in range(0, 100, 1):
         TI.servo_pulse(23, i)
@@ -153,6 +154,13 @@ def servo_beginscherm():
         TI.servo_pulse(23, i)
     time.sleep(0.48)
     beginscherm_tonen()
+
+
+def koppeling_ingedrukt():
+    if TI.afstandssensor_koppeling() is False:
+        TI.lightshow()
+        TI.switch_on(servo_beginscherm())
+
 
 def zoeken(choice, target):
     """"Functie zoekt in opgehaalde data naar de zoekopdracht
@@ -444,5 +452,5 @@ Zoekvak.pack(pady=20)
 NameButton.pack()
 GenreButton.pack()
 
-TI.switch_leuk_feitje(servo_beginscherm())
+koppeling_ingedrukt()
 root.mainloop()
