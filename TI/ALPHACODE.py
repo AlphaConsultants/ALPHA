@@ -287,6 +287,7 @@ def toon_feitje():
     MeestVoorkomendeGenre = modes(games_list, 1)
     bericht = "Het Genre '" + MeestVoorkomendeGenre + "' komt het vaakst voor in de huidige lijst."
     showinfo(title='popup', message=bericht)
+    TI.walk(19, 26, 0.05)
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~GUI~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

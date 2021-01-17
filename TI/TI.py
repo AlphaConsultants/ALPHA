@@ -94,22 +94,98 @@ def afstandssensor_koppeling():
             return False
 
 
-PIN_DATA  = 13
-PIN_LATCH = 6
-PIN_CLOCK = 5
-GPIO.setup(PIN_DATA,  GPIO.OUT)
-GPIO.setup(PIN_LATCH, GPIO.OUT)
-GPIO.setup(PIN_CLOCK, GPIO.OUT)
+DATA  = 13
+LATCH = 6
+CLOCK = 5
+GPIO.setup(DATA, GPIO.OUT)
+GPIO.setup(LATCH, GPIO.OUT)
+GPIO.setup(CLOCK, GPIO.OUT)
 
-def shiftout(byte):
-  GPIO.output(PIN_LATCH, 0)
+def schuif_register(byte):
+  GPIO.output(LATCH, 0)
   for x in range(8):
-    GPIO.output(PIN_DATA, (byte >> x) & 1)
-    GPIO.output(PIN_CLOCK, 1)
-    GPIO.output(PIN_CLOCK, 0)
-  GPIO.output(PIN_LATCH, 1)
+    GPIO.output(DATA, (byte >> x) & 1)
+    GPIO.output(CLOCK, 1)
+    GPIO.output(CLOCK, 0)
+  GPIO.output(LATCH, 1)
 
 def lightshow():
     for x in range(255):
-      shiftout(x)
+      schuif_register(x)
       time.sleep(0.02)
+
+
+print("neopixels walk")
+
+clock_pin = 19
+data_pin = 26
+
+GPIO.setup(clock_pin, GPIO.OUT)
+GPIO.setup(data_pin, GPIO.OUT)
+
+
+def apa102_send_bytes(clock_pin, data_pin, bytes):
+    """
+    zend de bytes naar de APA102 LED strip die is aangesloten op de clock_pin en data_pin
+    """
+
+    # implementeer deze functie:
+    for byte in bytes:
+        for bit in byte:
+            if bit == 1:
+                GPIO.output(data_pin, GPIO.HIGH)
+            else:
+                GPIO.output(data_pin, GPIO.LOW)
+            GPIO.output(clock_pin, GPIO.HIGH)
+            GPIO.output(clock_pin, GPIO.LOW)
+
+
+def apa102_aan(clock_pin, data_pin, colors):
+    """
+    zend de colors naar de APA102 LED strip die is aangesloten op de clock_pin en data_pin
+
+    De colors moet een list zijn, met ieder list element een list van 3 integers,
+    in de volgorde [ blauw, groen, rood ].
+    Iedere kleur moet in de range 0..255 zijn, 0 voor uit, 255 voor vol aan.
+
+    bv: colors = [ [ 0, 0, 0 ], [ 255, 255, 255 ], [ 128, 0, 0 ] ]
+    zet de eerste LED uit, de tweede vol aan (wit) en de derde op blauw, halve sterkte.
+    """
+
+    # implementeer deze functie, maak gebruik van de apa102_send_bytes functie
+    apa102_send_bytes(clock_pin, data_pin, [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]])
+    for i in range(8):
+        apa102_send_bytes(clock_pin, data_pin, [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]])
+    # apa102_send_bytes(clock_pin, data_pin, [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]])
+    for i in range(8):
+        apa102_send_bytes(clock_pin, data_pin, [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]])
+
+
+
+blue = [8, 0, 0]
+green = [0, 255, 0]
+red = [0, 0, 255]
+
+
+def colors(x, n, on, off):
+    result = []
+    for i in range(0, n):
+        if i == x:
+            result.append(on)
+        else:
+            result.append(off)
+    return result
+
+
+def walk(clock_pin, data_pin, delay, n=8):
+    while True:
+        for x in range(0, n):
+            apa102_aan(clock_pin, data_pin, colors(x, n, red, blue))
+            time.sleep(delay)
+        # for x in range(n - 2, 0, -1):
+        #     apa102_aan(clock_pin, data_pin, colors(x, n, red, blue))
+        #     time.sleep(delay)
+
+        return False
+
+
