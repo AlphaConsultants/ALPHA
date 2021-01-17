@@ -130,7 +130,6 @@ def apa102_send_bytes(clock_pin, data_pin, bytes):
     zend de bytes naar de APA102 LED strip die is aangesloten op de clock_pin en data_pin
     """
 
-    # implementeer deze functie:
     for byte in bytes:
         for bit in byte:
             if bit == 1:
@@ -153,16 +152,12 @@ def apa102_aan(clock_pin, data_pin, colors):
     zet de eerste LED uit, de tweede vol aan (wit) en de derde op blauw, halve sterkte.
     """
 
-    # implementeer deze functie, maak gebruik van de apa102_send_bytes functie
     apa102_send_bytes(clock_pin, data_pin, [
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]])
     for i in range(8):
         apa102_send_bytes(clock_pin, data_pin, [
             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]])
-    # apa102_send_bytes(clock_pin, data_pin, [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]])
-    for i in range(8):
-        apa102_send_bytes(clock_pin, data_pin, [
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]])
+
 
 
 blue = [8, 0, 0]
