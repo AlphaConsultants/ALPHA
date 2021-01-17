@@ -147,6 +147,7 @@ def zoeken_in_datascherm_tonen():
 
 
 def servo_beginscherm():
+    """Functie laat servo draaien en toont beginscherm"""
     for i in range(0, 100, 1):
         TI.servo_pulse(23, i)
     time.sleep(0.48)
@@ -157,6 +158,8 @@ def servo_beginscherm():
 
 
 def koppeling_ingedrukt():
+    """Functie wacht op response van Afstandssensor en laat vervolgens ledjes branden.
+    Nadat de ledjes klaar zijn met branden draait het servo en kun je op de switch klikken."""
     if TI.afstandssensor_koppeling() is False:
         TI.lightshow()
         TI.switch_on(servo_beginscherm())
@@ -283,6 +286,7 @@ def toon_rating_hl():
 
 
 def toon_feitje():
+    """Functie toont statistiek in showinfo"""
     data_in_datastructuur()
     MeestVoorkomendeGenre = modes(games_list, 1)
     bericht = "Het Genre '" + MeestVoorkomendeGenre + "' komt het vaakst voor in de huidige lijst."

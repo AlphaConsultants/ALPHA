@@ -1,9 +1,10 @@
 import time
 import RPi.GPIO as GPIO
-GPIO.setmode( GPIO.BCM )
-GPIO.setwarnings( 0 )
 
-print( "GPIO pulse" )
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(0)
+
+print("GPIO pulse")
 
 
 def pulse(led, delay1, delay2):
@@ -12,11 +13,11 @@ def pulse(led, delay1, delay2):
     Maak de pin pin_nr hoog, wacht high_time,
     maak de pin laag, en wacht nog low_time
     """
-    # copieer hier je implementatie van pulse
     GPIO.output(led, GPIO.HIGH)
     time.sleep(delay1)
     GPIO.output(led, GPIO.LOW)
     time.sleep(delay2)
+
 
 GPIO.setup(18, GPIO.OUT)
 
@@ -33,26 +34,23 @@ def servo_pulse(pin_nr, position):
     Before this function is called,
     the gpio pin must be configured as output.
     """
-
-    # implementeer deze functie
     pulse(pin_nr, 0.0005 + (0.00002 * position), 0.02)
 
 
 GPIO.setup(23, GPIO.OUT)
-
 GPIO.setup(24, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 
 def switch_on(output):
     while True:
-        if(GPIO.input(24)):
+        if (GPIO.input(24)):
             output
             return False
 
 
-
 GPIO.setup(21, GPIO.OUT)
 GPIO.setup(20, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+
 
 def sr04(trig_pin, echo_pin):
     """
@@ -86,6 +84,7 @@ def sr04(trig_pin, echo_pin):
 
     return afstand
 
+
 def afstandssensor_koppeling():
     while True:
         sr04(21, 20)
@@ -94,25 +93,27 @@ def afstandssensor_koppeling():
             return False
 
 
-DATA  = 13
+DATA = 13
 LATCH = 6
 CLOCK = 5
 GPIO.setup(DATA, GPIO.OUT)
 GPIO.setup(LATCH, GPIO.OUT)
 GPIO.setup(CLOCK, GPIO.OUT)
 
+
 def schuif_register(byte):
-  GPIO.output(LATCH, 0)
-  for x in range(8):
-    GPIO.output(DATA, (byte >> x) & 1)
-    GPIO.output(CLOCK, 1)
-    GPIO.output(CLOCK, 0)
-  GPIO.output(LATCH, 1)
+    GPIO.output(LATCH, 0)
+    for x in range(8):
+        GPIO.output(DATA, (byte >> x) & 1)
+        GPIO.output(CLOCK, 1)
+        GPIO.output(CLOCK, 0)
+    GPIO.output(LATCH, 1)
+
 
 def lightshow():
     for x in range(255):
-      schuif_register(x)
-      time.sleep(0.02)
+        schuif_register(x)
+        time.sleep(0.02)
 
 
 print("neopixels walk")
@@ -153,13 +154,15 @@ def apa102_aan(clock_pin, data_pin, colors):
     """
 
     # implementeer deze functie, maak gebruik van de apa102_send_bytes functie
-    apa102_send_bytes(clock_pin, data_pin, [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]])
+    apa102_send_bytes(clock_pin, data_pin, [
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]])
     for i in range(8):
-        apa102_send_bytes(clock_pin, data_pin, [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]])
+        apa102_send_bytes(clock_pin, data_pin, [
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]])
     # apa102_send_bytes(clock_pin, data_pin, [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]])
     for i in range(8):
-        apa102_send_bytes(clock_pin, data_pin, [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]])
-
+        apa102_send_bytes(clock_pin, data_pin, [
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]])
 
 
 blue = [8, 0, 0]
@@ -187,5 +190,3 @@ def walk(clock_pin, data_pin, delay, n=8):
         #     time.sleep(delay)
 
         return False
-
-
