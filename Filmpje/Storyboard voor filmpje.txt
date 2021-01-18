@@ -1,0 +1,76 @@
+STORY BOARD VOOR PROJECT B FILMPJE 
+
+-------------------------------------
+Gedeelte van 10 seconden
+-------------------------------------
+" Alpha Consultants Project B blabla" 
+- Start muziekje
+- onze namen erbij
+- stilstaand shot
+
+-------------------------------------
+Gedeelte van 30 seconden
+-------------------------------------
+"Korte uitleg over wat we gaan tonen"
+- Snel wisselende shots van BIM, TI, AI
+
+-------------------------------------
+Gedeelte van 60 seconden
+-------------------------------------
+"BIM Stakeholdersanalyse"
+- Scrolling down shot van voorblad
+- Uitleg wat we hebben gedaan
+- Scrollingdown shots
+- Missie, visie, strategie in beeld gebracht
+	- Stukje tekst bedenken
+- Stakeholders in beeld gebracht
+	- Stukje tekst bedenken
+- Koppeling maken met Customer Journey Map
+
+-------------------------------------
+Gedeelte van 60 seconden
+-------------------------------------
+"BIM Customer Journey Mapping"
+- Scrolling down shot van voorblad
+- Uitleg over wat we hebben gedaan (stakeholderanalyse als input)
+- Scrolling down shot van interviews (snel)
+	- "We hebben gebruikers hun reis afgenomenblablabla"
+- Wisselende shots van de Customer Journey Maps
+	- "Aan de hand daarvan hebben we een Customer Journey Maps gemaakt blabla"
+- Shot van customer journey maps
+- Shot van customer journey canvas
+	- "Dit hebben we samengevoegd en blabla"
+
+-------------------------------------
+Gedeelte van 60 seconden
+-------------------------------------
+"TI Hardware"
+- Panning shot van de raspberry
+- Uitleg over wat we ongeveer hebben gedaan " we hebben gekozen om blabla"
+- Shot van de koppeling "koppeling"
+- Shot van de lampjes
+- Shot van de servo 
+- Shot van de knop die ingedrukt wordt
+- Shot van alles in werking
+- Overgang naar het dashboard
+
+-------------------------------------
+Gedeelte van 120 seconden
+-------------------------------------
+"AI Dashboard" 
+- Overgang van het dashboard opnemen
+- Uitleggen over wat we hebben gedaan
+- Scrolling shot van code
+- Tekst over sorteer algoritme "We hebben gekozen voor dit sorteer algoritme omdat het... "
+- Tekst over TI import "We hebben in deze module onze TI Functies gezet die we kunnen importen"
+- Tekst over Statistiek "We hebben als kwantitatieve statistische variable en kwalita.... "
+- Shot van het Dashboard weer
+- Tekst over wat je ziet
+- Shots demo geeft terwijl abdullah voice over geeft
+- Bij 'leuk feitje' een shot van de ledstrip die aangaat
+
+
+
+
+
+

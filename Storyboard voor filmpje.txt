@@ -1,4 +1,4 @@
-
+STORY BOARD VOOR PROJECT B FILMPJE 
 
 -------------------------------------
 Gedeelte van 10 seconden
@@ -36,15 +36,80 @@ Gedeelte van 60 seconden
 - Scrolling down shot van interviews (snel)
 	- "We hebben gebruikers hun reis afgenomenblablabla"
 - Wisselende shots van de Customer Journey Maps
-	- "Aan de hand daarvan hebben we een Customer Journey Maps gemaakt
+	- "Aan de hand daarvan hebben we een Customer Journey Maps gemaakt blabla"
 - Shot van customer journey maps
 - Shot van customer journey canvas
 	- "Dit hebben we samengevoegd en blabla"
 
 -------------------------------------
+Gedeelte van kort
+-------------------------------------
+"CSC Verbinding"
+- Scroll down shot van word document
+- Keuze voor Dynamic DNS provider
+- Duck DNS afbeelding
+
+
+-------------------------------------
 Gedeelte van 60 seconden
 -------------------------------------
-"AI Dashboard"
+"TI Hardware"
+- Panning shot van de raspberry
+- Uitleg over wat we ongeveer hebben gedaan " we hebben gekozen om blabla"
+- Shot van de koppeling "koppeling"
+- Shot van de lampjes
+- Shot van de servo 
+- Shot van de knop die ingedrukt wordt
+- Shot van alles in werking
+- Overgang naar het dashboard
+
+-------------------------------------
+Gedeelte van 120 seconden
+-------------------------------------
+"AI Dashboard" 
+- Overgang van het dashboard opnemen
+- Uitleggen over wat we hebben gedaan
+- Scrolling shot van code
+- Tekst over sorteer algoritme "We hebben gekozen voor dit sorteer algoritme omdat het... "
+- Tekst over TI import "We hebben in deze module onze TI Functies gezet die we kunnen importen"
+- Tekst over Statistiek "We hebben als kwantitatieve statistische variable en kwalita.... "
+- Shot van het Dashboard weer
+- Tekst over wat je ziet
+- Shots demo geeft terwijl abdullah voice over geeft
+- Bij 'leuk feitje' een shot van de ledstrip die aangaat
+
+
+-------------------------------------------------------------------
+"INTRO"
+Wij zijn Alpha Consultants, een groep van 4 jonge en lerende HBO ICT Studenten die de opdracht hebben gekregen
+van Steam om de klanten van Steam beter te bedienen door grafische weergaves. 
+Dit hebben we gedaan aan de hand van 2 sprints verdeeld over de onderdelen BIM, CSC, AI, TI.
+
+"BIM 1"
+Wij hebben in de eerste sprint onderzoek gedaan doormiddel van een stakeholdersanalyse. Daardoor zijn we erachter gekomen
+wat de missie, vissie en strategie van Steam is. We hebben keydrivers vastgesteld en de stakeholders geidentificeert en geanalyseert.
+"
+
+"BIM 2" 
+Na het uitvoeren van de stakeholdersanalyse zijn we gaan kijken naar de huidige reis van de gebruiker. We hebben verschillende personen geinterviewd
+en met customer journey maps vastgelegt wat er in hun huidige reis tekortkomt en wat efficient werkt. 
+Na de implementatie hebben we een toekomstige customer journey map kunnen maken en met een validatie gesprek zijn we erachter gekomen hoe ze de verandering
+hebben ervaren.
+
+"CSC Verbinding"
+Voor CSC moesten we een verbinding gaan leggen tussen onze laptop en raspberri pi. We hebben de keuze gemaakt voor DuckDNS als Dynamic DNS provider.
+Dit hebben we gedaan omdat we ervaring hebben met deze DDNS. We zijn verbonden via de Fully Qualified Domain Name alphaconsultant.duckdns.org
+Doormiddel van een VNC verbinding kunnen we het scherm van de raspberri pi bedienen en weergeven via onze eigen laptop.
+
+"TI Hardware"
+ongeveer 22 seconden
+
+
+
+
+Wij hebben aan de hand van Sprints 
+onderzoek gedaan naar bijvoorbeeld wat de missie en strategi'en zijn van Steam, daarna hebben wij de reis van de klant vast gelegd om vervolgens 
+een implementatie te maken die geschikt is. 
 
 
 
