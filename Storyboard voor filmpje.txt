@@ -79,30 +79,68 @@ Gedeelte van 120 seconden
 - Bij 'leuk feitje' een shot van de ledstrip die aangaat
 
 
--------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
 "INTRO"
 Wij zijn Alpha Consultants, een groep van 4 jonge en lerende HBO ICT Studenten die de opdracht hebben gekregen
 van Steam om de klanten van Steam beter te bedienen door grafische weergaves. 
 Dit hebben we gedaan aan de hand van 2 sprints verdeeld over de onderdelen BIM, CSC, AI, TI.
 
+-----------------------------------
 "BIM 1"
 Wij hebben in de eerste sprint onderzoek gedaan doormiddel van een stakeholdersanalyse. Daardoor zijn we erachter gekomen
 wat de missie, vissie en strategie van Steam is. We hebben keydrivers vastgesteld en de stakeholders geidentificeert en geanalyseert.
 "
 
+-----------------------------------
 "BIM 2" 
 Na het uitvoeren van de stakeholdersanalyse zijn we gaan kijken naar de huidige reis van de gebruiker. We hebben verschillende personen geinterviewd
 en met customer journey maps vastgelegt wat er in hun huidige reis tekortkomt en wat efficient werkt. 
 Na de implementatie hebben we een toekomstige customer journey map kunnen maken en met een validatie gesprek zijn we erachter gekomen hoe ze de verandering
 hebben ervaren.
 
+-----------------------------------
 "CSC Verbinding"
 Voor CSC moesten we een verbinding gaan leggen tussen onze laptop en raspberri pi. We hebben de keuze gemaakt voor DuckDNS als Dynamic DNS provider.
 Dit hebben we gedaan omdat we ervaring hebben met deze DDNS. We zijn verbonden via de Fully Qualified Domain Name alphaconsultant.duckdns.org
 Doormiddel van een VNC verbinding kunnen we het scherm van de raspberri pi bedienen en weergeven via onze eigen laptop.
 
+-----------------------------------
 "TI Hardware"
 ongeveer 22 seconden
+"We hebben binnen het project 5 hardware onderdelen toegepast. Een servo, een switch, een sr04 afstandssensor, een schuifregister en een apa102 ledstrip.
+Wij hebben deze hardware onderdelen op een bepaalde volgorde geimplementeerd voordat je het dashboard kan starten. Zie het als een beveiling
+of een unlocking feature.
+
+We hebben de servo omgebouwd tot koppeling. vergelijkbaar met die van een auto die moet worden ingetrapt voordat je ook maar iets kan doen.
+Als je de koppeling hebt ingedrukt dan zie je een indicatie van lampjes die zich binair optellen gevolgd door de servo die een keer heen en weer draait
+voordat je de volgende stap kan zetten.
+
+Als de servo klaar is met heen en weer draaien kan je met een druk op de switch het dashboard starten.
+Als u niet deze volgorde aanhoudt dan zal de switch niet het dashboard kunnen starten.
+
+Hier ziet u een demonstratie van hoe je het dashboard opstart.
+
+
+-------------------------------------------------------------
+"AI Dashboard"
+TI IMPORT
+"De functies die we hebben gemaakt voor de hardware van de raspberry, hebben we in een aparte pythonfile gezet die we kunnen aanroepen 
+doormiddel van import. Hier ziet u een voorbeeld van hoe we deze functies aanroepen."
+Zo behouden we ook overzicht en onderscheiden we de code van het dashboard en de hardware.
+
+SORTEERALGORITME
+"We hebben de data van Steam ingeladen in een list met tuples. We hebben hiervoor gekozen omdat de data in tuples onaanpasbaar is 
+en een list ons de vrijheid bied om een volgorde aan te passen en te sorteren.
+We hebben bubblesort als eigen sorteer algoritme gekozen en toegepast op de data.
+We hebben de functie zo gemaakt dat we kunnen sorteren op verschillende argumenten als; naam, genre, releasedatum en rating.
+We kunnen dat oplopend en aflopend sorteren. 
+
+STATISTIEK
+"We hebben functies gemaakt om statistieken van de data te weergeven. We hebben een kwantitatieve en kwalitatieve variable bepalad.
+De uitkomsten van de statistische functies worden getoont in het dashboard. We bepalen welk genre het meest voorkomt ten opzichte van 
+de hele lijst. En we bepalen of de meerderheid van de mensen het spel positief beoordelen of negatief beoordelen. Dit doen we aan de hand 
+van centrum en spreidingsmaten."
+
 
 
 
