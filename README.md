@@ -54,3 +54,7 @@ Instructies code/programma runnen op raspberry pi
 3. Als de code op de raspberry runt, hou je hand 5 cm voor de koppeling (afstandssensor)
 4. Als de lampjes binair hebben opgetelt zou de servo moeten draaien.
 5. Als de servo klaar is met draaien, druk dan op de switch om het dashboard te starten.
+
+Demo filmpje:
+https://www.youtube.com/watch?v=yaIrpgn6SX0
+
