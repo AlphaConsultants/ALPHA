@@ -47,3 +47,10 @@ Instructies code uitvoeren
 2.  Open dit met Python/Pycharm
 3a. Druk op "SHIFT+F10" om de code te runnen
 3b. Of klik met uw rechtermuisknop in de code en selecteer 'Run'
+
+Instructies code/programma runnen op raspberry pi
+1. Heb een werkende intrepeter verbinding met de raspberry en pycharm.
+2. Run de code om wijzigingen te pushen naar de raspberry.
+3. Als de code op de raspberry runt, hou je hand 5 cm voor de koppeling (afstandssensor)
+4. Als de lampjes binair hebben opgetelt zou de servo moeten draaien.
+5. Als de servo klaar is met draaien, druk dan op de switch om het dashboard te starten.
