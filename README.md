@@ -43,7 +43,7 @@ Voorbeeldvragen die Steam beantwoord wil zien voor haar klanten:
 
 Instructies code uitvoeren
 
-1.  Download 'AI-sprint 1.py' vanuit de GitHub Repo
+1.  Download 'AlphaCode zonder TI.py' vanuit de GitHub Repo
 2.  Open dit met Python/Pycharm
 3a. Druk op "SHIFT+F10" om de code te runnen
 3b. Of klik met uw rechtermuisknop in de code en selecteer 'Run'
