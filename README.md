@@ -43,7 +43,7 @@ Voorbeeldvragen die Steam beantwoord wil zien voor haar klanten:
 
 Instructies code uitvoeren
 
-1.  Download 'AI-sprint 1.py' vanuit de GitHub Repo
+1.  Download 'AlphaCode zonder TI.py' vanuit de GitHub Repo
 2.  Open dit met Python/Pycharm
 3a. Druk op "SHIFT+F10" om de code te runnen
 3b. Of klik met uw rechtermuisknop in de code en selecteer 'Run'
@@ -54,3 +54,7 @@ Instructies code/programma runnen op raspberry pi
 3. Als de code op de raspberry runt, hou je hand 5 cm voor de koppeling (afstandssensor)
 4. Als de lampjes binair hebben opgetelt zou de servo moeten draaien.
 5. Als de servo klaar is met draaien, druk dan op de switch om het dashboard te starten.
+
+Demo filmpje:
+https://www.youtube.com/watch?v=yaIrpgn6SX0
+
